@@ -1,0 +1,4 @@
+replicaCount: 3
+
+adminToken: "lc-admin-PROD-9d41c0ee77aa"
+databasePassword: "prod-db-S3cr3t-2026"

@@ -1,0 +1,180 @@
+{
+  "format_version": "1.2",
+  "terraform_version": "1.9.5",
+  "resource_changes": [
+    {
+      "address": "aws_db_instance.launch_manifest",
+      "type": "aws_db_instance",
+      "name": "launch_manifest",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "delete",
+          "create"
+        ],
+        "before": {
+          "engine_version": "15.7",
+          "skip_final_snapshot": false,
+          "deletion_protection": true,
+          "backup_retention_period": 7
+        },
+        "after": {
+          "engine_version": "16.3",
+          "skip_final_snapshot": true,
+          "deletion_protection": false,
+          "backup_retention_period": 0
+        }
+      }
+    },
+    {
+      "address": "aws_db_parameter_group.legacy",
+      "type": "aws_db_parameter_group",
+      "name": "legacy",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "delete"
+        ],
+        "before": {
+          "name": "legacy-pg14"
+        },
+        "after": null
+      }
+    },
+    {
+      "address": "aws_ecs_task_definition.api",
+      "type": "aws_ecs_task_definition",
+      "name": "api",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "create",
+          "delete"
+        ],
+        "before": {
+          "revision": 41
+        },
+        "after": {
+          "revision": 42
+        }
+      }
+    },
+    {
+      "address": "aws_iam_policy.api",
+      "type": "aws_iam_policy",
+      "name": "api",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "policy": "{\"Statement\":[{\"Action\":[\"s3:GetObject\",\"s3:PutObject\"],\"Resource\":[\"arn:aws:s3:::launch-artifacts/*\"]}]}"
+        },
+        "after": {
+          "policy": "{\"Statement\":[{\"Action\":[\"*\"],\"Resource\":[\"*\"]}]}"
+        }
+      }
+    },
+    {
+      "address": "aws_security_group.api",
+      "type": "aws_security_group",
+      "name": "api",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "ingress": [
+            {
+              "from_port": 22,
+              "to_port": 22,
+              "cidr_blocks": [
+                "10.0.0.0/8"
+              ]
+            }
+          ]
+        },
+        "after": {
+          "ingress": [
+            {
+              "from_port": 22,
+              "to_port": 22,
+              "cidr_blocks": [
+                "0.0.0.0/0"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "address": "aws_cloudwatch_log_group.api",
+      "type": "aws_cloudwatch_log_group",
+      "name": "api",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "create"
+        ],
+        "before": null,
+        "after": {
+          "name": "/ecs/launch-control",
+          "retention_in_days": 30
+        }
+      }
+    },
+    {
+      "address": "aws_s3_bucket.artifacts",
+      "type": "aws_s3_bucket",
+      "name": "artifacts",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "no-op"
+        ],
+        "before": {
+          "bucket": "launch-artifacts"
+        },
+        "after": {
+          "bucket": "launch-artifacts"
+        }
+      }
+    },
+    {
+      "address": "aws_ecs_service.api",
+      "type": "aws_ecs_service",
+      "name": "api",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "desired_count": 2
+        },
+        "after": {
+          "desired_count": 3
+        }
+      }
+    },
+    {
+      "address": "aws_ssm_parameter.app_env",
+      "type": "aws_ssm_parameter",
+      "name": "app_env",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "value": "staging"
+        },
+        "after": {
+          "value": "production"
+        }
+      }
+    }
+  ]
+}

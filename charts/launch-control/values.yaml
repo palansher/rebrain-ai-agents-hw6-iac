@@ -1,0 +1,11 @@
+replicaCount: 2
+
+image:
+  repository: registry.example.com/launch-control
+
+service:
+  port: 8080
+
+# секреты лежат прямо в values в открытом виде
+adminToken: "lc-admin-7f3a9c2e14b8f0d5"
+databasePassword: "p0stgr3s-prod-pw"

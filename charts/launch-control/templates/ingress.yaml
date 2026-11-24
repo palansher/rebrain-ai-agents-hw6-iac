@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ include "launch-control.fullname" . }}
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ include "launch-control.fullname" . }}
+              servicePort: {{ .Values.service.port }}
