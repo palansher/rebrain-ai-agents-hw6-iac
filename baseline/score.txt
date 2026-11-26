@@ -1,0 +1,15 @@
+
+=== score: Safe IaC packet ===
+
+  ✗ helm lint  ] Chart.yaml: appVersion should be of type string but it's of type float64
+  ✗ helm template (рендер)  Error: template: launch-control/templates/serviceaccount.yam
+  – kubeconform (helm)  нечего валидировать: рендер упал
+  ✗ kustomize build  error: replace operation does not apply: doc is missing path
+  – kubeconform (kustomize)  нечего валидировать: build упал
+  ✗ policy: манифесты  правил нет - напишите свои в policy/
+  ✗ policy: terraform plan  правил нет
+  ✗ нет секретов в values  4 подозрительных строк
+
+  Готово: 0/8
+  В terraform/plan.json: 9 изменений, из них с удалением ресурса: 3
+

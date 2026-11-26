@@ -77,4 +77,6 @@ conftest test <rendered> --policy policy/        # после появления
 - целевая версия Kubernetes: `1.29.0` (значение по умолчанию в `scripts/score.sh`, переопределяется `K8S_VERSION`);
 - табло: `./scripts/score.sh` (8 слоёв);
 - «до»: `baseline/*.log`;
+- policy — **Rego v1** (`deny contains msg if { ... }`); старый `deny[msg] {` не парсится conftest 0.71.1
+  (внутри OPA 1.21.1). Правила по плану — `warn`, gate — `conftest test --fail-on-warn`;
 - критерии приёмки шага — в `../steps-iac.md`.

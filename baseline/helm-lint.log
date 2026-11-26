@@ -1,0 +1,6 @@
+==> Linting charts/launch-control
+[ERROR] Chart.yaml: appVersion should be of type string but it's of type float64
+[INFO] Chart.yaml: icon is recommended
+[ERROR] templates/: template: launch-control/templates/serviceaccount.yaml:1:14: executing "launch-control/templates/serviceaccount.yaml" at <.Values.serviceAccount.create>: nil pointer evaluating interface {}.create
+
+Error: 1 chart(s) linted, 1 chart(s) failed
